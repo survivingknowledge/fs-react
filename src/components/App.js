@@ -1,14 +1,12 @@
 import React, { Component } from 'react';
 
-import ProductList from './product/ProductList';
+// import ProductList from './product/ProductList';
+import TimersDashboard from './timer/TimersDashboard';
 
 class App extends Component {
   render(){
     return(
-      <div className="main ui text container">
-        <h1 className="ui dividing centered header">Popular Products</h1>
-        <ProductList />
-      </div>
+      <div><TimersDashboard /></div>
     );
   }
 }
