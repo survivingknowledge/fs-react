@@ -8,6 +8,7 @@ class TimerForm extends Component {
   };
 
   handleTitleChange = (e) => {
+    console.log('handletitlechange')
     this.setState({ title: e.target.value });
   };
 
