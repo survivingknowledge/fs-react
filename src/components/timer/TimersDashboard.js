@@ -29,11 +29,13 @@ class TimersDashboard extends Component {
   };
 
   createTimer = (timer) => {
-    console.log(timer);
+    const zeroDate = new Date();
+    zeroDate.setHours(0,0,0,0);
+
     const t = Object.assign({}, timer, {
       id: uuidv4(),
-      elapsed: Math.round(new Date().getTime()/1000),
-      runningSince: Date.now()
+      elapsed: zeroDate.getTime(),
+      runningSince: Date.now(),
     });
     this.setState({
       timers: this.state.timers.concat(t)

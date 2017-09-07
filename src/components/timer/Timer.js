@@ -1,10 +1,22 @@
 import React, { Component } from 'react';
 
+function formatTime(time) {
+  const d = new Date(time)
+  let hours = d.getHours();
+  let min = d.getMinutes();
+  let sec = d.getSeconds();
+
+  if (hours < 10){ hours = "0" + hours }
+  if (min < 10){ min = "0" + min }
+  if (sec < 10){ sec = "0" + sec }
+
+  return `${hours}:${min}:${sec}`
+}
+
 class Timer extends Component {
 
   render() {
-    const d = new Date(this.props.elapsed * 1000);
-    const elapsedString =  `${d.getHours()}:${d.getMinutes()}:${d.getSeconds()}`;
+    const elapsedString =  formatTime(this.props.elapsed);
 
     return (
       <div className="ui centered card">
