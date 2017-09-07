@@ -11,7 +11,6 @@ class Product extends Component {
   handleUpVote(ev) {
     ev.preventDefault();
     this.props.onVote(this.props.id);
-    console.log('handleUpVote called');
   }
 
   render() {

@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 
-import Product from './app-2';
+import Product from './Product';
 
-import Seed from './seed';
+import Seed from '../seed';
 
 
 class ProductList extends Component {

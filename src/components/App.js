@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ProductList from './app-1';
+import ProductList from './product/ProductList';
 
 class App extends Component {
   render(){
