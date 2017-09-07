@@ -6,7 +6,10 @@ import TimersDashboard from './timer/TimersDashboard';
 class App extends Component {
   render(){
     return(
-      <div><TimersDashboard /></div>
+      <div className="main ui">
+        <h1 className="ui dividing centered header">Timers</h1>
+        <TimersDashboard />
+      </div>
     );
   }
 }
