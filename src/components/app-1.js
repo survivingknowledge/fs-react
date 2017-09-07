@@ -11,15 +11,24 @@ class ProductList extends Component {
     super(props);
 
     this.state = {
-      products: Seed.products || [],
+      products: Seed.products,
+      counter: 0,
     };
 
     this.handleProductUpVote = this.handleProductUpVote.bind(this);
+    this.incrementCounter = this.incrementCounter.bind(this);
     console.log('construtor called');
   }
 
+  componentDidMount() {
+    setInterval(this.incrementCounter, 1000);
+  }
+
+  incrementCounter() {
+    this.setState({ counter: this.state.counter + 1 })
+  }
+
   handleProductUpVote(productId) {
-    // console.log(productId + ' was upvoted.');
     const nextProducts = this.state.products.map((product) => {
       if (product.id === productId) {
         return Object.assign({}, product, {
@@ -29,7 +38,6 @@ class ProductList extends Component {
         return product;
       }
     });
-    console.log(nextProducts);
     this.setState({
       products: nextProducts,
     });
@@ -57,6 +65,7 @@ class ProductList extends Component {
     return (
       <div className="ui unstackable items">
         {productComponents}
+        Counter {this.state.counter}
       </div>
     );
   }

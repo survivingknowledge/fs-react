@@ -8,8 +8,10 @@ class Product extends Component {
     this.handleUpVote = this.handleUpVote.bind(this);
   }
 
-  handleUpVote() {
+  handleUpVote(ev) {
+    ev.preventDefault();
     this.props.onVote(this.props.id);
+    console.log('handleUpVote called');
   }
 
   render() {
