@@ -1,14 +1,32 @@
 import React, { Component } from 'react';
 
+import TimerActionButton from './TimerActionButton';
+
 
 class Timer extends Component {
+
+  componentDidMount() {
+    this.forceUpdateInterval = setInterval(() => this.forceUpdate(), 50);
+  };
+
+  componentWillUnmount() {
+    clearInterval(this.forceUpdateInterval);
+  };
 
   handleTrashClick = () => {
     this.props.onTrashClick(this.props.id);
   };
 
+  handleStartClick = () => {
+    this.props.onStartClick(this.props.id);
+  };
+
+  handleStopClick = () => {
+    this.props.onStopClick(this.props.id);
+  };
+
   render() {
-    const elapsedString =  formatTime(this.props.elapsed);
+    const elapsedString =  formatTime(Date.now() - this.props.runningSince);
 
     return (
       <div className="ui centered card">
@@ -35,9 +53,11 @@ class Timer extends Component {
             </span>
           </div>
         </div>
-        <div className="ui bottom attached blue basic button">
-          Start
-        </div>
+        <TimerActionButton
+          timerIsRunning={!!this.props.runningSince}
+          onStartClick={this.handleStartClick}
+          onStopClick={this.handleStopClick}
+        />
       </div>
     );
   }
@@ -46,14 +66,18 @@ class Timer extends Component {
 
 
  function formatTime(time) {
-   const d = new Date(time)
-   let hours = d.getHours();
-   let min = d.getMinutes();
-   let sec = d.getSeconds();
+   // Set the unit values in milliseconds.
+  let msecPerMinute = 1000 * 60;
+  let msecPerHour = msecPerMinute * 60;
 
-   if (hours < 10){ hours = "0" + hours }
-   if (min < 10){ min = "0" + min }
-   if (sec < 10){ sec = "0" + sec }
+   // Calculate the hours, minutes, and seconds.
+  let hours = Math.floor(time / msecPerHour );
+  time = time - (hours * msecPerHour );
+
+  let min = Math.floor(time / msecPerMinute );
+  time = time - (min * msecPerMinute );
+
+  let sec = Math.floor(time / 1000 );
 
    return `${hours}:${min}:${sec}`
  }

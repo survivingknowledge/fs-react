@@ -2,13 +2,16 @@ import React, { Component } from 'react';
 
 class TimerForm extends Component {
 
-  state = {
-    title: this.props.title || '',
-    project: this.props.project || '',
-  };
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: this.props.title || '',
+      project: this.props.project || '',
+    };
+  }
 
   handleTitleChange = (e) => {
-    console.log('handletitlechange')
     this.setState({ title: e.target.value });
   };
 
@@ -35,13 +38,13 @@ class TimerForm extends Component {
 
             <div className="field">
               <label>Title</label>
-              <input type="text" value={this.props.title}
+              <input type="text" value={this.state.title}
                 onChange={this.handleTitleChange}
               />
             </div>
             <div className="field">
               <label>Project</label>
-              <input type="text" value={this.props.project}
+              <input type="text" value={this.state.project}
                 onChange={this.handleProjectChange}
               />
             </div>
