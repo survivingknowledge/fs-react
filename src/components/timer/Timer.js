@@ -26,7 +26,7 @@ class Timer extends Component {
   };
 
   render() {
-    const elapsedString =  formatTime(Date.now() - this.props.runningSince);
+    const elapsedString =  formatTime(this.props.elapsed + (Date.now() - this.props.runningSince));
 
     return (
       <div className="ui centered card">
